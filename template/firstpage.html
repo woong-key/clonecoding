@@ -10,6 +10,7 @@
 {% load static %}
 <script src="{% static 'jquery-3.6.0.min.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
 
     <div id="box1">
         <pre id="typing_text">
@@ -21,7 +22,7 @@
 
             매번 끝까지 적어야 하는 인물 이름
             그리고 눌러줘야 하는 tab 키
-            다시 바꿔줘야 하는 포매팅...
+            다시 바꿔줘야 하는 형식...
         </pre>
         <pre id="typing">
         </pre> 
@@ -62,12 +63,41 @@
             </pre>
         </div>
         <div id="typewriter">
-
+<!-- 21/04/27 김인웅 -->
+    <pre class="callout" style="padding-top: 450px; font-weight: bolder;">
+        <span style="font-size: 30pt; font-weight: bolder;">↵</span> 마다 자동으로
+                다음 형식을 지정해줄 수는 없을까요?
+    </pre>
+    <pre class="callout" style="font-weight: bolder;">
+                            자음 <span style="font-size: 20pt; font-weight: bolder;">ㅈ</span>에 <span style="font-size: 30pt; font-weight: bolder;">↵</span> 키로
+                            <span style="font-size: 20pt; font-weight: bolder;">중호</span>를 입력할 수는 없을까요? 
+</pre>
+    <pre class="callout" style="padding-top: 50px; font-weight: bolder;">
+            이름 다음에 <span style="font-size: 30pt; font-weight: bolder;">⇥</span>을 자동으로 입력할 수는 없을까요? 
+    </pre>
+    <p id="calltoaction" style="display: none; text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20pt; font-weight: bolder; padding-top: 600px; padding-left: -200px;">
+        물론 할 수 있죠.<br>
+        Scene<span>#1</span>에서 나의 첫 씬을 써보세요!<br>
+        <span>▼</span>
+    </p>
         </div>
     </div>
 
     <div id="box3">
-
+        <div id="slidein" style="text-align: center;">
+            <p style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 28pt; font-weight: bolder; margin-top: 200px; margin-bottom: 40px;">S<span>#1</span></p>
+            <img src="{% static 'appstore.png' %}" alt="" style="width: 18%; vertical-align: middle; padding-bottom: 5px;">
+            <a href="https://apps.apple.com/kr/app/ommwriter/id412347921?mt=12">&nbsp;AppStore</a><br>
+            
+            <a href="#" style="display: inline-block; margin-top: 50px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">작성한 S#1</a><br>
+            <br>
+            <a href="#" style="display: inline-block; margin-top: 50px;">About Us</a>
+        </div>
+        <div id="writer">
+            <textarea name="" id="" cols="30" rows="30"></textarea><br>
+            <input type="text" name="" id="">
+            <input type="submit" value="">
+        </div>
     </div>
 
 
@@ -83,6 +113,7 @@ $(window).ready(function() {
         $('#typing').animate({opacity: span_opc}, 1)
     })
 })
+
 
 /* ----------------------------------------[edit 21/04/26 김인웅]---------------------------------------- */
 /* 글자 타이핑 효과 구현 */
@@ -104,6 +135,40 @@ function typing() {
         clearInterval(typing_idx)
     } 
 }
+
+
+/* 21/04/37 김인웅 페이드인, 페이드아웃 구현 */
+$(window).ready(function() {
+    $(window).scroll(function() {
+        let scroll_top = $(window).scrollTop()
+        if (scroll_top > 900 && scroll_top < 1100) {
+            $('.callout').fadeIn()
+        }
+    })
+})
+
+$(window).ready(function() {
+    $(window).scroll(function() {
+        let scroll_top = $(window).scrollTop()
+        if (scroll_top > 1600) {
+            $('.callout').fadeOut(1000)
+            $('#scenario_text').fadeOut(1000)
+            $('#calltoaction').fadeIn(2000)
+        } else if (scroll_top > 1400 && scroll_top < 1600) {
+            $('#scenario_text').fadeIn()
+        }
+    })
+})
+
+/* 세 번째 섹션에서 왼쪽 슬라이드인 구현 */
+$(window).ready(function() {
+    $(window).scroll(function() {
+        let scroll_top = $(window).scrollTop()
+        if (scroll_top == 3261) {
+            $("#slidein").animate({left: 0}, 1500)
+        }
+    })
+})
+
 </script>
-<!-- ------------------------------------------------------------------------------------------------------ -->
 </html>
