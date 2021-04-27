@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Scene#1</title>
+</head>
+
+<body>
+
+{% load static %}
+<script src="{% static 'jquery-3.6.0.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+    <div id="box1">
+        <pre id="typing_text">
+
+            머리 속에서 씬을 그리다가
+            괜찮은 지문과 대사를 쓸 때
+            불편함을 느낀 적 없나요?
+            번거롭지 않았나요?
+
+            매번 끝까지 적어야 하는 인물 이름
+            그리고 눌러줘야 하는 tab 키
+            다시 바꿔줘야 하는 포매팅...
+        </pre>
+        <pre id="typing">
+        </pre> 
+    </div>
+
+    <div id="box2">
+        <div id="paper">
+            <pre id="scenario_text">
+                
+                영화 -추격자- 중
+
+                차를 뒤로 빼려하는데, 여성운전자의 승용차가 바짝 붙어 선다.
+                앞으론 중호의 차가, 뒤로는 여성의 차가 막아 움직이지 못하는 상태.<span>↵</span>
+                
+                    <span>영민</span><span>⇥</span>	(한숨) 아저씨, 됐으니까 차 빼세요. 돈 안줘도 돼요.<span>↵</span>
+                    <span>중호</span><span>⇥</span>	그러지 말고 연락처 주시면 보상해...<span>↵</span>
+                    <span>영민</span><span>⇥</span>	아, 차 빼라고! (뒤차에게) 야! 차 빼! 차 빼라고!<span>↵</span>
+                
+                영민의 이러한 모습을 한참 지켜보더니,<span>↵</span>
+                
+                    <span>중호</span><span>⇥</span>	야. 사팔팔오. 너지?<span>↵</span>
+                
+                순간 표정 관리를 못한 영민이 중호를 쳐다본다.<span>↵</span>
+                
+                    <span>중호</span><span>⇥</span>	(웃으며) 씹**...<span>↵</span>
+                
+                중호가 핸드폰을 귀에 대자 영민의 바지에서 핸드폰이 울린다.<span>↵</span>
+                
+                    <span>중호</span><span>⇥</span>	받어, 이 **.<span>↵</span>
+                    <span>영민</span><span>⇥</span>	.......<span>↵</span>
+                    <span>중호</span><span>⇥</span>	(차문을 열며) 내려라.<span>↵</span>
+                    <span>영민</span><span>⇥</span>	.......<span>↵</span>
+                    <span>중호</span><span>⇥</span>	얼른 내려. 넌 죽었어.<span>↵</span>
+                
+                영민이 내리질 않자 옷을 잡고 끌어내는 중호.<span>↵</span>
+                
+                    <span>중호</span><span>⇥</span>	(안 나오려 힘주자) 이 **이.<span>↵</span>
+            </pre>
+        </div>
+        <div id="typewriter">
+
+        </div>
+    </div>
+
+    <div id="box3">
+
+    </div>
+
+
+</body>
+
+<!-- ----------------------------------------[edit 21/04/23 김인웅]---------------------------------------- -->
+<!-- 스크롤 시 투명도 변화 제이쿼리 작성 -->
+<script>
+$(window).ready(function() {
+    $(window).scroll(function() {
+        let scroll_top = $(window).scrollTop()
+        let span_opc = 1 - scroll_top/500
+        $('#typing').animate({opacity: span_opc}, 1)
+    })
+})
+
+/* ----------------------------------------[edit 21/04/26 김인웅]---------------------------------------- */
+/* 글자 타이핑 효과 구현 */
+let typing_bool = false
+let typing_idx = 0
+let typing_text = $('#typing_text').text()
+
+if(typing_bool == false) {
+    typing_bool = true
+    let typing_intvl = setInterval(typing, 40) 
+} 
+    
+function typing() {
+    let scroll_top = $(window).scrollTop()
+    if(typing_idx < typing_text.length) { 
+        $('#typing').append(typing_text[typing_idx])
+        typing_idx = typing_idx + 1 
+    } else { 
+        clearInterval(typing_idx)
+    } 
+}
+</script>
+<!-- ------------------------------------------------------------------------------------------------------ -->
+</html>
