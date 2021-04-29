@@ -76,7 +76,7 @@
             이름 다음에 <span style="font-size: 30pt; font-weight: bolder;">⇥</span>을 자동으로 입력할 수는 없을까요? 
     </pre>
     <p id="calltoaction" style="display: none; text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20pt; font-weight: bolder; padding-top: 600px; padding-left: -200px;">
-        물론 할 수 있죠.<br>
+        물론 할 수 있죠!<br>
         Scene<span>#1</span>에서 나의 첫 씬을 써보세요!<br>
         <span>▼</span>
     </p>
@@ -87,16 +87,20 @@
         <div id="slidein" style="text-align: center;">
             <p style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 28pt; font-weight: bolder; margin-top: 200px; margin-bottom: 40px;">S<span>#1</span></p>
             <img src="{% static 'appstore.png' %}" alt="" style="width: 18%; vertical-align: middle; padding-bottom: 5px;">
-            <a href="https://apps.apple.com/kr/app/ommwriter/id412347921?mt=12">&nbsp;AppStore</a><br>
+            <a href="https://apps.apple.com/us/app/slugline-2/id1483507254?mt=12" target="_blank" style="text-decoration: none; font-size: 20pt;">&nbsp;AppStore</a><br>
             
-            <a href="#" style="display: inline-block; margin-top: 50px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">작성한 S#1</a><br>
+            <a href="{% url 'firstpage:slist' %}" style="display: inline-block; margin-top: 60px; font-size: 20pt; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-decoration: none;">S#1에서<br>작성된 씬 보기</a><br>
             <br>
-            <a href="#" style="display: inline-block; margin-top: 50px;">About Us</a>
+            <a href="#" style="display: inline-block; margin-top: 50px; font-size: 20pt; text-decoration: none;">About Us</a>
         </div>
-        <div id="writer">
-            <textarea name="" id="" cols="30" rows="30"></textarea><br>
-            <input type="text" name="" id="">
-            <input type="submit" value="">
+        <div>
+            <form action="{% url 'firstpage:scene_create' %}" method="post">
+            {% csrf_token %}
+                <textarea id="textarea" cols="30" rows="30" placeholder="여기에서 작성해보세요."></textarea>
+                <label for="pswd">숫자 4자리 패스워드</label>
+                <input id="pswd" type="text" maxlength="4" name="" placeholder="####" style="text-align: center;">
+                <input id="save" type="submit" value="저장하기">
+            </form>
         </div>
     </div>
 
@@ -164,11 +168,13 @@ $(window).ready(function() {
 $(window).ready(function() {
     $(window).scroll(function() {
         let scroll_top = $(window).scrollTop()
-        if (scroll_top == 3261) {
+        console.log(scroll_top)
+        if (scroll_top >= 3030) {
             $("#slidein").animate({left: 0}, 1500)
         }
     })
 })
+
 
 </script>
 </html>

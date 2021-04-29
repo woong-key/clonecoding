@@ -24,6 +24,6 @@ urlpatterns = [
     path('', views.index, name='index'),
 # ---------------------------------- [edit 21/04/19 김인웅] ---------------------------------- #
 
-#     path('firstpage/', include('firstpage.urls')),
+    path('firstpage/', include('firstpage.urls')),
 # ------------------------------------------------------------------------------------------- #
 ]

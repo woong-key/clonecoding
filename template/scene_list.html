@@ -1,0 +1,89 @@
+<!--2021,.04.28 김인웅-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Scenes</title>
+</head>
+
+<body>
+{% load scene_filter %}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+<div id="scene_list_bg" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">
+<div class="container">
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>첫 마디</th>
+            <th>작성 일자</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if show_page %}
+            {% for scene in show_page %}
+
+        <tr>
+            <td>{{ show_page.paginator.count|sub:show_page.start_index|sub:forloop.counter0|add:1 }}</td>
+            <!-- 게시글 번호 = 전체 게시물 개수 - 시작 인덱스 - 현재 인덱스 + 1 -->
+            <td><a href="#">{{ scene.scene_content }}</a>
+            <td>{{ scene.scene_datetime }}</td>
+        </tr>
+        </tbody>
+
+            {% endfor %}
+        {% endif %}
+    </table>
+
+    <ul class="pagination justify-content-center">
+        {% if show_page.has_previous %}
+        <li class="page-item">
+            <a href="#" data-page="{{ show_page.previous_page_number }}">이전</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a href="#" tabindex="-1" aria-disabled="true"></a>
+        </li>
+        {% endif %}
+
+        {% for page_number in show_page.paginator.page_range %}
+
+            {% if page_number >= show_page.number|add:-2 and page_number <= show_page.number|add:2 %}
+            <!-- 현재 페이지를 기준으로 좌우 add: 숫자만큼 보이게 함 -->
+            {% if page_number == show_page.number %}
+            <li>
+                <a href="#" data-page="{{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="#" data-page="{{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% endif %}
+
+            {% endif %}
+
+        {% endfor %}
+
+
+        {% if show_page.has_next %}
+        <li class="page-item">
+            <a href="#" data-page="{{ show_page.next_page_number }}">다음</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a href="#" tabindex="-1" aria-disabled="true"></a>
+        </li>
+        {% endif %}
+    </ul>
+
+</div>
+</div>
+
+</body>
+</html>
