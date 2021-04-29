@@ -9,6 +9,6 @@ urlpatterns = [
 # ------------------------------------------------------------------------------------------- #
     path('', views.index, name='index'),
     path('slist', views.slist, name='slist'),
-    path('slist', views.scene_create, name='scene_create'),
+    path('scenecreate', views.scene_create, name='scene_create'),
     path('slist/<int:scene_id>/', views.slist, name=''),
     ]

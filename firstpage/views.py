@@ -10,8 +10,8 @@ from .forms import SceneForm
 from django.http import HttpResponse
 
 def index(request):
-
-    return render(request, 'firstpage.html')
+    Scene_list = Scene.objects.order_by('-scene_datetime')
+    return render(request, 'firstpage.html', {'scene': Scene_list})
 # ------------------------------------------------------------------------------------------- #
 
 # 2021.04.28 김인웅 - scene_list 뷰 작성
@@ -25,13 +25,9 @@ def slist(request):
 
 
 def scene_create(request):
-    if request.method == 'POST':
-        form = SceneForm(request.POST)
-        if form.is_valid():
-            scene = form.save(commit=False)
-            scene.scene_datetime = timezone.now()
-            scene.save()
-            return redirect('slist')
-    else:
-        form = SceneForm()
-    return render(request, 'scene_list.html', {'form': form})
+    form = SceneForm(request.POST)
+    if form.is_valid():
+        scene = form.save(commit=False)
+        scene.scene_datetime = timezone.now()
+        scene.save()
+        return redirect('firstpage:slist')

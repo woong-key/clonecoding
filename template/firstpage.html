@@ -94,12 +94,12 @@
             <a href="#" style="display: inline-block; margin-top: 50px; font-size: 20pt; text-decoration: none;">About Us</a>
         </div>
         <div>
-            <form action="{% url 'firstpage:scene_create' %}" method="post">
+            <form method="post" id="frm" action="{% url 'firstpage:scene_create' %}" href="#" class="post-form">
             {% csrf_token %}
-                <textarea id="textarea" cols="30" rows="30" placeholder="여기에서 작성해보세요."></textarea>
+                <textarea id="textarea" cols="30" rows="30" name="scene_content" placeholder="여기에서 작성해보세요."></textarea>
                 <label for="pswd">숫자 4자리 패스워드</label>
-                <input id="pswd" type="text" maxlength="4" name="" placeholder="####" style="text-align: center;">
-                <input id="save" type="submit" value="저장하기">
+                <input id="pswd" type="text" maxlength="4" name="scene_password" placeholder="####" style="text-align: center;">
+                <input id="save" type="button" value="저장하기">
             </form>
         </div>
     </div>
@@ -166,6 +166,7 @@ $(window).ready(function() {
 
 /* 세 번째 섹션에서 왼쪽 슬라이드인 구현 */
 $(window).ready(function() {
+
     $(window).scroll(function() {
         let scroll_top = $(window).scrollTop()
         console.log(scroll_top)
