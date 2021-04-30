@@ -10,7 +10,7 @@
 }
 #typing {
     color: black;
-    padding-top: 370px;
+    padding-top: 400px;
     font-size: 20pt;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
@@ -155,7 +155,7 @@ label {
     width: 500px;
     height: 500px;
     position: absolute;
-    left: 480px;
+    left: 680px;
 }
 #pswd_cfrm {
     color: black;
@@ -165,7 +165,7 @@ label {
     border: 1px solid black;
     position: absolute;
     top: 610px;
-    left: 480px;
+    left: 680px;
 }
 #del_btn {
     width: 100px;
@@ -174,7 +174,7 @@ label {
     border: 1px solid black;
     position: absolute;
     top: 610px;
-    left: 880px;
+    left: 1080px;
 }
 #no_del {
     color: red;
@@ -185,5 +185,5 @@ label {
     background: transparent;
     position: absolute;
     top: 610px;
-    left: 620px;
+    left: 820px;
 }
