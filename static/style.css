@@ -147,6 +147,7 @@ label {
     background-position-y: -400px;
 }
 
+
 #written {
     color: black;
     background: transparent;
@@ -156,8 +157,7 @@ label {
     position: absolute;
     left: 480px;
 }
-
-#pswd2 {
+#pswd_cfrm {
     color: black;
     width: 100px;
     height: 40px;
@@ -175,4 +175,15 @@ label {
     position: absolute;
     top: 610px;
     left: 880px;
+}
+#no_del {
+    color: red;
+    opacity: 0.6;
+    width: 220px;
+    height: 40px;
+    padding-top: 7px;
+    background: transparent;
+    position: absolute;
+    top: 610px;
+    left: 620px;
 }

@@ -21,21 +21,28 @@
         </div>
         <form method="post" action="{% url 'firstpage:scene_delete' scene.id %}" class="post-form">
         {% csrf_token %}
-            <input id="pswd2" type="text" maxlength="4" name="scene_password" placeholder="####" style="text-align: center;">
+            <input id="pswd_cfrm" type="text" maxlength="4" name="scene_password" placeholder="####" style="text-align: center;">
             <input id="del_btn" type="submit" value="삭제하기">
         </form>
+
+<!--    2021.04.30 에러 메시지 표시 구현    -->
+        {% if messages %}
+            <div id="no_del">
+                {% for message in messages %}
+                    <div>
+                    <strong>{{ message.message }}</strong>
+                    </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+
     </div>
 
 </body>
 
 <script>
     $(document).ready(function() {
-        $('#del_btn').on('click', function() {
-            if($('#pswd2').val() == '') {
-                alert('네 자리 비밀번호를 입력해주세요.')
-                return false
-            }
-        })
+        $('#no_del').fadeOut(1500)
     })
 </script>
 

@@ -4,6 +4,7 @@ from django.utils import timezone
 
 from .models import Scene
 from .forms import SceneForm
+from django.contrib import messages
 
 # Create your views here.
 # ---------------------------------- [edit 21/04/19 김인웅] ---------------------------------- #
@@ -47,10 +48,13 @@ def scene_content(request, scene_id):
 def scene_delete(request, scene_id):
 
     scene = get_object_or_404(Scene, pk=scene_id)
-    form = SceneForm(request.POST)
 
+# 2021.04.30 김인웅 - scene_delete 구현 수정
     if request.method == "POST":
-        print(form.is_valid())
-        if form.scene_password.value == scene.scene_password:
+        if request.POST['scene_password'] == scene.scene_password:
             scene.delete()
-            return redirect(request, 'firstpage:slist')
+            return redirect('firstpage:slist')
+        else:
+            messages.error(request, '비밀번호가 일치하지 않습니다.')
+        return redirect('firstpage:scene_content', scene_id=scene.id)
+
