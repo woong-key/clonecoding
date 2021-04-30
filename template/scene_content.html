@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>씬</title>
+    <title>My Scene#1</title>
 </head>
 
 <body>
@@ -12,11 +12,31 @@
 <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
 
-    <div>
-        <form action="" >
-            <textarea id="written_text" cols="40" rows="40"></textarea>
+    <div id="scene_list_bg" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+        <div id="written">
+            {{ scene.scene_datetime }}
+            <br>
+            <br>
+            {{ scene.scene_content }}
+        </div>
+        <form method="post" action="{% url 'firstpage:scene_delete' scene.id %}" class="post-form">
+        {% csrf_token %}
+            <input id="pswd2" type="text" maxlength="4" name="scene_password" placeholder="####" style="text-align: center;">
+            <input id="del_btn" type="submit" value="삭제하기">
         </form>
     </div>
 
 </body>
+
+<script>
+    $(document).ready(function() {
+        $('#del_btn').on('click', function() {
+            if($('#pswd2').val() == '') {
+                alert('네 자리 비밀번호를 입력해주세요.')
+                return false
+            }
+        })
+    })
+</script>
+
 </html>
